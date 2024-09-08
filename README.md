@@ -49,3 +49,9 @@ Pytorch Implementation For LPRNet, A High Performance And Lightweight License Pl
     pip uninstall opencv-contrib-python
     pip install opencv-contrib-python
     ```
+- [ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (100,) + inhomogeneous part.](https://blog.csdn.net/qwerpoiu66/article/details/130902870)
+    - 解决办法：
+    ```
+    pip uninstall numpy
+    pip install numpy==1.22.3
+    ```
