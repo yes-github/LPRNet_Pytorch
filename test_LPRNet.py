@@ -32,7 +32,7 @@ def get_parser():
     parser.add_argument('--phase_train', default=False, type=bool, help='train or test phase flag.')
     parser.add_argument('--num_workers', default=8, type=int, help='Number of workers used in dataloading')
     parser.add_argument('--cuda', default=True, type=bool, help='Use cuda to train model')
-    parser.add_argument('--show', default=False, type=bool, help='show test image and its predict result or not.')
+    parser.add_argument('--show', default=True, type=bool, help='show test image and its predict result or not.')
     parser.add_argument('--pretrained_model', default='./weights/Final_LPRNet_model.pth', help='pretrained base model')
 
     args = parser.parse_args()
@@ -155,12 +155,17 @@ def show(img, label, target):
     flag = "F"
     if lb == tg:
         flag = "T"
+    
     # img = cv2.putText(img, lb, (0,16), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, (0, 0, 255), 1)
+
+    print("target: ", tg, " ### {} ### ".format(flag), "predict: ", lb)
+
+    '''
     img = cv2ImgAddText(img, lb, (0, 0))
     cv2.imshow("test", img)
-    print("target: ", tg, " ### {} ### ".format(flag), "predict: ", lb)
     cv2.waitKey()
     cv2.destroyAllWindows()
+    '''
 
 def cv2ImgAddText(img, text, pos, textColor=(255, 0, 0), textSize=12):
     if (isinstance(img, np.ndarray)):  # detect opencv format or not

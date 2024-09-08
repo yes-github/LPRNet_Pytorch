@@ -40,6 +40,12 @@ Pytorch Implementation For LPRNet, A High Performance And Lightweight License Pl
 1. [LPRNet: License Plate Recognition via Deep Neural Networks](https://arxiv.org/abs/1806.10447v1)
 2. [PyTorch中文文档](https://pytorch-cn.readthedocs.io/zh/latest/)
 
-# postscript
-
-If you found this useful, please give me a star, thanks!
+# 常见问题
+- [AttributeError: module 'torch.utils.data' has no attribute 'collate'](https://blog.csdn.net/weixin_45354497/article/details/129755744)
+    - 解决办法：将`D:\bin\Anaconda3\lib\site-packages\torch\utils\data\_utils\collate.py`文件复制到上一级目录`D:\bin\Anaconda3\lib\site-packages\torch\utils\data\collate.py`即可
+- [cv2.destroyAllWindows() => cv2.error: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\highgui\src\window.cpp:1295: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvDestroyAllWindows'](https://blog.csdn.net/tsyccnh/article/details/102915803)
+    - 解决办法：重新安装`opencv-contrib-python`
+    ```bash
+    pip uninstall opencv-contrib-python
+    pip install opencv-contrib-python
+    ```
