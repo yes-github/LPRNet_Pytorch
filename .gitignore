@@ -1,3 +1,3 @@
 __pycache__
-train/Brazil
-train/China
+data/train/Brazil/*
+data/train/China/*
