@@ -40,7 +40,21 @@ Pytorch Implementation For LPRNet, A High Performance And Lightweight License Pl
 1. [LPRNet: License Plate Recognition via Deep Neural Networks](https://arxiv.org/abs/1806.10447v1)
 2. [PyTorch中文文档](https://pytorch-cn.readthedocs.io/zh/latest/)
 
+# 部署依赖
+```bash
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip3 install imutils
+```
+
+# 中国车牌数据
+### [CCPD](https://github.com/detectRecog/CCPD)
+- [2021黄牌](https://aistudio.baidu.com/datasetdetail/101671)
+- [2020绿牌](https://aistudio.baidu.com/datasetdetail/101595)
+- [2019蓝牌](https://aistudio.baidu.com/datasetdetail/101613)
+
 # 常见问题
+- [AttributeError: module 'numpy' has no attribute 'int'.](https://blog.csdn.net/weixin_46669612/article/details/129624331)
+    - 解决办法：将numpy的方法np.int改为np.int_
 - [AttributeError: module 'torch.utils.data' has no attribute 'collate'](https://blog.csdn.net/weixin_45354497/article/details/129755744)
     - 解决办法：将`D:\bin\Anaconda3\lib\site-packages\torch\utils\data\_utils\collate.py`文件复制到上一级目录`D:\bin\Anaconda3\lib\site-packages\torch\utils\data\collate.py`即可
 - [cv2.destroyAllWindows() => cv2.error: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\highgui\src\window.cpp:1295: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvDestroyAllWindows'](https://blog.csdn.net/tsyccnh/article/details/102915803)

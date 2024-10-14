@@ -67,8 +67,7 @@ def get_parser():
     parser.add_argument('--weight_decay', default=2e-5, type=float, help='Weight decay for SGD')
     parser.add_argument('--lr_schedule', default=[4, 8, 12, 14, 16], help='schedule for learning rate.')
     parser.add_argument('--save_folder', default='./weights/Brazil/', help='Location to save checkpoint models')
-    # parser.add_argument('--pretrained_model', default='./weights/Final_LPRNet_model.pth', help='pretrained base model')
-    parser.add_argument('--pretrained_model', default='', help='pretrained base model')
+    parser.add_argument('--pretrained_model', default='./weights/Pretrained_LPRNet_model.pth', help='pretrained base model')
 
     args = parser.parse_args()
 
@@ -83,7 +82,7 @@ def collate_fn(batch):
         imgs.append(torch.from_numpy(img))
         labels.extend(label)
         lengths.append(length)
-    labels = np.asarray(labels).flatten().astype(np.int)
+    labels = np.asarray(labels).flatten().astype(np.int_)
 
     return (torch.stack(imgs, 0), torch.from_numpy(labels), lengths)
 

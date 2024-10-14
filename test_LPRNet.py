@@ -6,7 +6,7 @@ test pretrained model.
 Author: aiboy.wei@outlook.com .
 '''
 
-from data.load_data import CHARS, CHARS_DICT, LPRDataLoader
+from data.load_data import CHARS_CHINA, CHARS_DICT, LPRDataLoader
 from PIL import Image, ImageDraw, ImageFont
 from model.LPRNet import build_lprnet
 # import torch.backends.cudnn as cudnn
@@ -25,7 +25,7 @@ import os
 def get_parser():
     parser = argparse.ArgumentParser(description='parameters to train net')
     parser.add_argument('--img_size', default=[94, 24], help='the image size')
-    parser.add_argument('--test_img_dirs', default="./data/test/Brazil", help='the test images path')
+    parser.add_argument('--test_img_dirs', default="./data/test/China", help='the test images path')
     parser.add_argument('--dropout_rate', default=0, help='dropout rate.')
     parser.add_argument('--lpr_max_len', default=8, help='license plate number max length.')
     parser.add_argument('--test_batch_size', default=100, help='testing batch size.')
@@ -33,7 +33,7 @@ def get_parser():
     parser.add_argument('--num_workers', default=8, type=int, help='Number of workers used in dataloading')
     parser.add_argument('--cuda', default=True, type=bool, help='Use cuda to train model')
     parser.add_argument('--show', default=True, type=bool, help='show test image and its predict result or not.')
-    parser.add_argument('--pretrained_model', default='./weights/Brazil/Final_LPRNet_model.pth', help='pretrained base model')
+    parser.add_argument('--pretrained_model', default='./weights/China/Final_LPRNet_model.pth', help='pretrained base model')
 
     args = parser.parse_args()
 
@@ -55,7 +55,7 @@ def collate_fn(batch):
 def test():
     args = get_parser()
 
-    lprnet = build_lprnet(lpr_max_len=args.lpr_max_len, phase=args.phase_train, class_num=len(CHARS), dropout_rate=args.dropout_rate)
+    lprnet = build_lprnet(lpr_max_len=args.lpr_max_len, phase=args.phase_train, class_num=len(CHARS_CHINA), dropout_rate=args.dropout_rate)
     device = torch.device("cuda:0" if args.cuda else "cpu")
     lprnet.to(device)
     print("Successful to build network!")
@@ -113,11 +113,11 @@ def Greedy_Decode_Eval(Net, datasets, args):
                 preb_label.append(np.argmax(preb[:, j], axis=0))
             no_repeat_blank_label = list()
             pre_c = preb_label[0]
-            if pre_c != len(CHARS) - 1:
+            if pre_c != len(CHARS_CHINA) - 1:
                 no_repeat_blank_label.append(pre_c)
             for c in preb_label: # dropout repeate label and blank label
-                if (pre_c == c) or (c == len(CHARS) - 1):
-                    if c == len(CHARS) - 1:
+                if (pre_c == c) or (c == len(CHARS_CHINA) - 1):
+                    if c == len(CHARS_CHINA) - 1:
                         pre_c = c
                     continue
                 no_repeat_blank_label.append(c)
@@ -147,10 +147,10 @@ def show(img, label, target):
 
     lb = ""
     for i in label:
-        lb += CHARS[i]
+        lb += CHARS_CHINA[i]
     tg = ""
     for j in target.tolist():
-        tg += CHARS[int(j)]
+        tg += CHARS_CHINA[int(j)]
 
     flag = "F"
     if lb == tg:
