@@ -117,7 +117,7 @@ CHARS_BRAZIL = [
     "Z",
 ]
 
-CHARS_DICT = {char: i for i, char in enumerate(CHARS_CHINA)}
+CHARS_DICT = {char: i for i, char in enumerate(CHARS_BRAZIL)}
 
 
 class LPRDataLoader(Dataset):

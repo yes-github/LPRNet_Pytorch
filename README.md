@@ -52,6 +52,11 @@ pip3 install imutils
 - [2020绿牌](https://aistudio.baidu.com/datasetdetail/101595)
 - [2019蓝牌](https://aistudio.baidu.com/datasetdetail/101613)
 
+# 从训练数据中抽取文件作为测试数据
+```bash
+find . -type f -name 'Z*.jpg' | tail -n 1 | xargs -I {} mv {} /home/ye/CODE/MY/LPRNet_Pytorch/data/test/Brazil
+```
+
 # 常见问题
 - [AttributeError: module 'numpy' has no attribute 'int'.](https://blog.csdn.net/weixin_46669612/article/details/129624331)
     - 解决办法：将numpy的方法np.int改为np.int_
